@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>饱了么 - 管理后台</title>
+      <script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/1.2.0-beta.20/libs/cn/index.js"></script>
+    <script type="module" crossorigin src="/assets/index-BIHt9dyu.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BthEFdmg.css">
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+    function initCozeIfNeeded() {
+      var path = window.location.pathname;
+      if (path.startsWith('/user/') && !path.includes('/login') && !path.includes('/register')) {
+        if (window.CozeWebSDK && !window.__cozeInited) {
+          window.__cozeInited = true;
+          try {
+            new window.CozeWebSDK.WebChatClient({
+              config: { type: 'bot', bot_id: '7646715657883123746', isIframe: false },
+              auth: {
+                type: 'token',
+                token: 'sat_MJDo2u6nlnwSUVRToiApvmsvJEt0XpB27FZgx50WkEEMwceGBTIFrBm783iyPm8B',
+                onRefreshToken: async function() { return 'sat_MJDo2u6nlnwSUVRToiApvmsvJEt0XpB27FZgx50WkEEMwceGBTIFrBm783iyPm8B'; }
+              },
+              userInfo: { id: 'user', url: 'https://lf-coze-web-cdn.coze.cn/obj/eden-cn/lm-lgvj/ljhwZthlaukjlkulzlp/coze/coze-logo.png', nickname: 'User' },
+              ui: {
+                base: { icon: 'https://lf-coze-web-cdn.coze.cn/obj/eden-cn/lm-lgvj/ljhwZthlaukjlkulzlp/coze/chatsdk-logo.png', layout: 'pc', lang: 'zh-CN', zIndex: 1000 },
+                header: { isShow: true, isNeedClose: true },
+                asstBtn: { isNeed: true },
+                footer: { isShow: true, expressionText: 'Powered by Coze' },
+                chatBot: { title: 'Coze Bot', uploadable: true, width: 390 }
+              }
+            });
+            console.log('[Coze] 已加载');
+          } catch(e) { console.error('[Coze] 加载失败:', e); }
+        }
+      }
+    }
+    if (document.readyState === 'complete') { initCozeIfNeeded(); }
+    else { window.addEventListener('load', initCozeIfNeeded); }
+    var _pushState = history.pushState;
+    history.pushState = function() { _pushState.apply(this, arguments); setTimeout(initCozeIfNeeded, 500); };
+    window.addEventListener('popstate', function() { setTimeout(initCozeIfNeeded, 500); });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
